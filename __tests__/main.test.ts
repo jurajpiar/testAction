@@ -11,6 +11,12 @@ const mockInputs = {
   INPUT_BRANCHES: 'develop,staging'
 }
 
+const mockPayload: WebhookPayload = {
+  pusher: {
+    name: 'mona'
+  }
+}
+
 beforeEach(() => {
   jest.resetModules()
   const doc = yaml.load(
@@ -19,11 +25,7 @@ beforeEach(() => {
   Object.keys(mockInputs).forEach(name => {
     process.env[name] = mockInputs[name as keyof typeof mockInputs]
   })
-  github.context.payload = {
-    pusher: {
-      name: 'mona'
-    }
-  } as WebhookPayload
+  github.context.payload = mockPayload
 })
 
 afterEach(() => {
