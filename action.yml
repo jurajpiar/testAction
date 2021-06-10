@@ -1,6 +1,6 @@
-name: 'Test action'
-description: 'Test action'
-author: 'Juraj Piar'
+name: 'Backport'
+description: 'Backport hotfix onto other environment branches.'
+author: 'Juraj Piar <juraj.piar@icloud.com>'
 inputs:
   github_token:
     description: Token for the GitHub API.

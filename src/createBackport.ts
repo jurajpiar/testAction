@@ -1,4 +1,3 @@
-/* eslint-disable github/no-then */
 import * as core from '@actions/core'
 import {Octokit, createGitClient} from './utils'
 
@@ -12,9 +11,7 @@ export type CreateBackportProps = {
   octokit: Octokit
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type CreteBackport = (props: CreateBackportProps) => Promise<void>
-export const createBackport: CreteBackport = async ({
+export const createBackport = async ({
   branch,
   login,
   repoName,
@@ -22,7 +19,7 @@ export const createBackport: CreteBackport = async ({
   prCommit,
   prTitle,
   octokit
-}): Promise<void> => {
+}: CreateBackportProps): Promise<void> => {
   const git = createGitClient(repoName)
 
   const backportBranch = `backport-${prNumber}-to-${branch}`
@@ -42,6 +39,7 @@ export const createBackport: CreteBackport = async ({
     '--strategy-option=patience',
     '--rerere-autoupdate',
     prCommit
+    // eslint-disable-next-line github/no-then
   ).catch(async error => {
     await git('cherry-pick', '--abort')
     throw error

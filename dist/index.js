@@ -37,7 +37,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.createBackport = void 0;
-/* eslint-disable github/no-then */
 const core = __importStar(__webpack_require__(2186));
 const utils_1 = __webpack_require__(918);
 const createBackport = ({ branch, login, repoName, prNumber, prCommit, prTitle, octokit }) => __awaiter(void 0, void 0, void 0, function* () {
@@ -48,7 +47,9 @@ const createBackport = ({ branch, login, repoName, prNumber, prCommit, prTitle, 
     yield git('switch', branch);
     yield git('fetch', '--all');
     yield git('switch', '--create', backportBranch);
-    yield git('cherry-pick', '-x', '--strategy=recursive', '--diff-algorithm=patience', '--strategy-option=patience', '--rerere-autoupdate', prCommit).catch((error) => __awaiter(void 0, void 0, void 0, function* () {
+    yield git('cherry-pick', '-x', '--strategy=recursive', '--diff-algorithm=patience', '--strategy-option=patience', '--rerere-autoupdate', prCommit
+    // eslint-disable-next-line github/no-then
+    ).catch((error) => __awaiter(void 0, void 0, void 0, function* () {
         yield git('cherry-pick', '--abort');
         throw error;
     }));
