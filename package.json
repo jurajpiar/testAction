@@ -33,7 +33,7 @@
   "devDependencies": {
     "@octokit/openapi-types": "^7.3.0",
     "@octokit/webhooks-types": "^3.77.1",
-    "@types/jest": "^26.0.15",
+    "@types/jest": "^27.0.3",
     "@types/js-yaml": "^4.0.1",
     "@types/node": "^14.14.9",
     "@typescript-eslint/eslint-plugin": "^4.26.1",
